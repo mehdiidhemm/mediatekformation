@@ -1,0 +1,20 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block title %}Admin - Catégories{% endblock %}
+{% block admin_title %}Gestion des catégories{% endblock %}
+
+{% block admin_content %}
+<div class="mt-4 mb-3 d-flex justify-content-between align-items-center">
+    <h1 class="m-0">Ajouter une playlist</h1>
+    <a href="{{ path('admin_playlists') }}" class="btn btn-secondary">Retour</a>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn btn-primary mt-3" type="submit">Enregistrer</button>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

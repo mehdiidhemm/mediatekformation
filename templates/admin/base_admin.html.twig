@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="mt-4 mb-3 d-flex justify-content-between align-items-center">
+    <h1 class="m-0">{% block admin_title %}Administration{% endblock %}</h1>
+
+    <div class="d-flex gap-2">
+        <a href="{{ path('admin_formations') }}" class="btn btn-outline-secondary btn-sm">Formations</a>
+        <a href="{{ path('admin_playlists') }}" class="btn btn-outline-secondary btn-sm">Playlists</a>
+        <a href="{{ path('admin_categories') }}" class="btn btn-outline-secondary btn-sm">Catégories</a>
+        <a href="{{ path('app_logout') }}" class="btn btn-outline-danger btn-sm">Déconnexion</a>
+    </div>
+</div>
+
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">{{ message }}</div>
+{% endfor %}
+{% for message in app.flashes('danger') %}
+    <div class="alert alert-danger">{{ message }}</div>
+{% endfor %}
+
+{% block admin_content %}{% endblock %}
+{% endblock %}

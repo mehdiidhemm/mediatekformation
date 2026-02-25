@@ -1,0 +1,23 @@
+{% extends 'admin/base_admin.html.twig' %}
+
+{% block title %}Admin - Catégories{% endblock %}
+{% block admin_title %}Gestion des catégories{% endblock %}
+
+{% block admin_content %}
+<div class="mt-4 mb-3">
+    <h1>Ajouter une catégorie</h1>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        {{ form_start(form) }}
+            {{ form_row(form.name) }}
+
+            <div class="mt-3">
+                <button type="submit" class="btn btn-success">Enregistrer</button>
+                <a href="{{ path('admin_categories') }}" class="btn btn-secondary">Retour</a>
+            </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

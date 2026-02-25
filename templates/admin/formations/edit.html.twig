@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier une playlist{% endblock %}
+
+{% block body %}
+<div class="mt-4">
+    <h1>Modifier une playlist</h1>
+
+    <a href="{{ path('admin_playlists') }}" class="btn btn-secondary btn-sm mb-3">← Retour</a>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button class="btn btn-warning mt-3">Mettre à jour</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

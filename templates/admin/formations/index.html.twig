@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin - Formations{% endblock %}
+
+{% block body %}
+<div class="d-flex justify-content-between align-items-center mt-4 mb-3">
+    <h1 class="m-0">Gestion des formations</h1>
+    <a href="{{ path('app_logout') }}" class="btn btn-outline-danger btn-sm">Déconnexion</a>
+</div>
+
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">{{ message }}</div>
+{% endfor %}
+
+<div class="mb-3">
+    <a href="{{ path('admin_formations_add') }}" class="btn btn-primary">Ajouter une formation</a>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Titre</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for formation in formations %}
+        <tr>
+            <td>{{ formation.id }}</td>
+            <td>{{ formation.title }}</td>
+            <td>{{ formation.publishedAt ? formation.publishedAt|date('Y-m-d') : '' }}</td>
+            <td class="d-flex gap-2">
+                <a href="{{ path('admin_formations_edit', {id: formation.id}) }}" class="btn btn-warning btn-sm">
+                    Modifier
+                </a>
+
+                <form method="post"
+                      action="{{ path('admin_formations_delete', {id: formation.id}) }}"
+                      onsubmit="return confirm('Supprimer cette formation ?');">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete_formation_' ~ formation.id) }}">
+                    <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
+                </form>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="4">Aucune formation trouvée.</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
